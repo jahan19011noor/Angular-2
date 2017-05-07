@@ -1,0 +1,56 @@
+<form class="container">
+    <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input
+                ngControl="firstname"
+                #firstname="ngForm"
+                type="text"
+                (change)="log(firstname)"
+                class="form-control"
+                id="firstname"
+                required
+                minlength="4">
+        <div *ngIf="firstname.touched && firstname.errors">
+            {{ firstname.errors | json }}
+            <div
+                    class="alert alert-danger"
+                    *ngIf="firstname.errors.required">
+                First Name is required
+            </div>
+            <div
+                    class="alert alert-danger"
+                    *ngIf="firstname.errors.minlength">
+                First Name must be more then {{ firstname.errors.minlength.requiredLength }} characters.
+            </div>
+        </div>
+    </div>
+
+    <!--(change)="log(firstname)"           no need of the binding the change even here with the implicit validations-->
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea
+                ngControl="comment"
+                #comment="ngForm"
+                (change)="log(comment)"
+                id="comment"
+                cols="30"
+                rows="10"
+                class="form-control"
+                required
+                minlength="10">
+        </textarea>
+        <div *ngIf="comment.touched && comment.errors">
+            <div
+                    class="alert alert-danger"
+                    *ngIf="comment.errors.required">
+                Comment is required
+            </div>
+            <div
+                    class="alert alert-danger"
+                    *ngIf="comment.errors.minlength">
+                Min Lenght must be more then {{ comment.errors.minlength.requiredLength}} characters.
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form>

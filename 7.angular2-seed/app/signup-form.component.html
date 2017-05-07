@@ -1,0 +1,41 @@
+<form class="container" [ngFormModel]="form" (ngSubmit)="signup()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input
+                type="text"
+                class="form-control"
+                id="username"
+                ngControl="username"
+                #username="ngForm">
+        <div
+                class="alert alert-danger"
+                *ngIf="form.controls['username'].touched && !form.controls['username'].valid">
+            Username is required!
+        </div>
+        <div
+                class="alert alert-danger"
+                *ngIf="username.touched && !username.valid">
+            Username is required!
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input
+                type="text"
+                class="form-control"
+                id="password"
+                ngControl="password"
+                #password="ngForm">
+        <div
+                class="alert alert-danger"
+                *ngIf="form.controls['password'].touched && !form.controls['password'].valid">
+            Password is Required!
+        </div>
+        <div
+                class="alert alert-danger"
+                *ngIf="password.touched && !password.valid">
+            Password is Required!
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>

@@ -1,0 +1,40 @@
+<form class="container" [ngFormModel]="form" (ngSubmit)="signup()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input
+                type="text"
+                class="form-control"
+                id="username"
+                ngControl="username"
+                #username="ngForm">
+        <div *ngIf="username.touched && username.errors">
+            <div
+                    class="alert alert-danger"
+                    *ngIf="username.errors.required">
+                Username is required!
+            </div>
+            <div
+                    class="alert alert-danger"
+                    *ngIf="username.errors.cannotContainSpace">
+                Username cannot contain space
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input
+                type="text"
+                class="form-control"
+                id="password"
+                ngControl="password"
+                #password="ngForm">
+        <div *ngIf="password.touched && password.errors">
+            <div
+                    class="alert alert-danger"
+                    *ngIf="password.errors.required">
+                Password is Required!
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>

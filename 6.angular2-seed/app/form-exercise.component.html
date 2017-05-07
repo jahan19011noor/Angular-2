@@ -1,0 +1,59 @@
+<!--form>div.form-group>label+input.form-control[type='text']-->
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input
+                type="text"
+                id="name"
+                class="form-control"
+                #name="ngForm"
+                (change)="log(name)"
+                required
+                minlength=3>
+        <div *ngIf="name.touched" *ngIf="name.errors">
+            <div
+                    class="alert alert-danger"
+                    *ngIf="name.errors.required">
+                Name is required
+            </div>
+            <div
+                    class="alert alert-danger"
+                    *ngIf="name.errors.minlength">
+                Name should be more than {{ name.errors.minlength.requiredLength }} characters.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input
+                type="email"
+                class="form-control"
+                id="email"
+                #email="ngForm"
+                (change)="log(email)"
+                required
+                email>
+        <div *ngIf="email.touched" *ngIf="email.errors">
+            <div
+                    class="alert alert-danger"
+                    *ngIf="email.errors.required">
+                Email is required
+            </div>
+            <div
+                    class="alert alert-danger"
+                    *ngIf="email.errors.email">
+                Email should be in the format your_name@domain.com
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="freq">Frequency of Emails</label>
+        <select name="" id="freq">
+            <option value="Weekly"></option>
+            <option value="Monthly"></option>
+            <option value="Yearly"></option>
+        </select>
+    </div>
+</form>
+
